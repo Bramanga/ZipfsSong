@@ -1,0 +1,91 @@
+<html>
+<head>
+  <title></title>
+  <script type="text/javascript">
+    // Sort array of objects descending by property
+    function sortDescending(sample, prop) {
+      var sorted = sample.sort(function(a, b) {
+        if (a[prop] > b[prop]) {
+          return -1;
+        }
+        if (a[prop] < b[prop]) {
+          return 1;
+        }
+        return 0;
+      });
+      return sorted;
+    }
+
+    function generateQualityProperty(sample) {
+      var max_played = sample[0].play_count;
+      console.log(max_played);
+      for (i=0; i < sample.length; i++) {
+        var x = i + 1;
+        var quality = sample[i].play_count / (max_played * 1 / x);
+        sample[i]['quality'] = quality;
+      }
+      return sample;
+    }
+
+    var sample_1 = [
+      { play_count: 30, song_title: 'one' },
+      { play_count: 30, song_title: 'two' },
+      { play_count: 15, song_title: 'three' },
+      { play_count: 25, song_title: 'four' }
+    ];
+
+    var sample_2 = [
+      { play_count: 197812, song_title: '5_4' },
+      { play_count: 189517, song_title: 're_hash' },
+      { play_count: 78906, song_title: '5_4' },
+      { play_count: 189518, song_title: 'tomorrow_comes_today' },
+      { play_count: 39453, song_title: 'new_genious' },
+      { play_count: 210492, song_title: 'clint_eastwood' },
+      { play_count: 26302, song_title: 'man_research' },
+      { play_count: 22544, song_title: 'punk' },
+      { play_count: 19727, song_title: 'sound_check' },
+      { play_count: 17535, song_title: 'double_bass' },
+      { play_count: 18782, song_title: 'rock_the_house' },
+      { play_count: 198189, song_title: '19_2000' },
+      { play_count: 13151, song_title: 'latin_simone' },
+      { play_count: 12139, song_title: 'starshine' },
+      { play_count: 11272, song_title: 'slow_country' },
+      { play_count: 10521, song_title: 'm1_a1' }
+    ];
+
+    var sample_3 = [
+      { play_count: 197812, song_title: 're_hash' },
+      { play_count: 78906, song_title: '5_4' },
+      { play_count: 189518, song_title: 'tomorrow_comes_today' },
+      { play_count: 39453, song_title: 'new_genious' },
+      { play_count: 210492, song_title: 'clint_eastwood' },
+      { play_count: 26302, song_title: 'man_research' },
+      { play_count: 22544, song_title: 'punk' },
+      { play_count: 19727, song_title: 'sound_check' },
+      { play_count: 17535, song_title: 'double_bass' },
+      { play_count: 18782, song_title: 'rock_the_house' },
+      { play_count: 198189, song_title: '19_2000' },
+      { play_count: 13151, song_title: 'latin_simone' },
+      { play_count: 12139, song_title: 'starshine' },
+      { play_count: 11272, song_title: 'slow_country' },
+      { play_count: 10521, song_title: 'm1_a1' }
+    ];
+
+    var sorted_sample = sortDescending(sample_1, 'play_count');
+    // console.log(sorted_sample);
+    var qualities = generateQualityProperty(sorted_sample);
+    // console.log(qualities);
+    var final = sortDescending(qualities, 'quality');
+    console.log(final);
+
+    var sorted_sample = sortDescending(sample_3, 'play_count');
+    var qualities = generateQualityProperty(sorted_sample);
+    var final = sortDescending(qualities, 'quality');
+    console.log(final);
+
+  </script>
+</head>
+<body>
+  <h2>Hello World!</h2>
+</body>
+</html>
