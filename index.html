@@ -3,7 +3,7 @@
   <title></title>
   <script type="text/javascript">
     // Sort array of objects descending by property
-    function sortDescending(sample, prop) {
+    function sortDescending(sample, prop, count) {
       var sorted = sample.sort(function(a, b) {
         if (a[prop] > b[prop]) {
           return -1;
@@ -13,16 +13,14 @@
         }
         return 0;
       });
-      return sorted;
+      for (i=0; i < count; i++) {
+        console.log(sample[i]);
+      }
     }
 
     function generateQualityProperty(sample) {
-      var max_played = sample[0].play_count;
-      console.log(max_played);
       for (i=0; i < sample.length; i++) {
-        var x = i + 1;
-        var quality = sample[i].play_count / (max_played * 1 / x);
-        sample[i]['quality'] = quality;
+        sample[i]['quality'] = sample[i].play_count / (sample.length - i);
       }
       return sample;
     }
@@ -71,17 +69,13 @@
       { play_count: 10521, song_title: 'm1_a1' }
     ];
 
-    var sorted_sample = sortDescending(sample_1, 'play_count');
-    // console.log(sorted_sample);
-    var qualities = generateQualityProperty(sorted_sample);
-    // console.log(qualities);
-    var final = sortDescending(qualities, 'quality');
-    console.log(final);
+    console.log('------------------ Sample 1 ------------------');
+    var qualities = generateQualityProperty(sample_1);
+    var final = sortDescending(qualities, 'quality', 2);
 
-    var sorted_sample = sortDescending(sample_3, 'play_count');
-    var qualities = generateQualityProperty(sorted_sample);
-    var final = sortDescending(qualities, 'quality');
-    console.log(final);
+    console.log('------------------ Sample 2 ------------------');
+    var qualities = generateQualityProperty(sample_2);
+    var final = sortDescending(qualities, 'quality', 3);
 
   </script>
 </head>
